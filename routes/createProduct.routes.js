@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { createElectronicsProducts, createMensProducts, createWomensProducts } from "../controllers/product.controllers.js";
+import { createElectronicsProducts, createMensProducts, createWomensProducts } from "../controllers/createProduct.controllers.js";
 import { upload } from "../middlewares/multer.middlewares.js";
 
 const router = Router();
@@ -15,5 +15,4 @@ router.route("/electronic").post(
     upload.array("imageUrl", 10),
     createElectronicsProducts
 );
-
 export default router

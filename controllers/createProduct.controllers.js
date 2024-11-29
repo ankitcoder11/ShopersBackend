@@ -38,6 +38,7 @@ const createWomensProducts = asyncHandler(async (req, res) => {
     for (const file of req.files) {
         const imageLocalPath = file.path;
         const imageUrl = await uploadOnCloudinary(imageLocalPath);
+        console.log(imageUrl);
         imageUrls.push(imageUrl.url);
     }
     const product = await Women.create({
@@ -81,4 +82,4 @@ const createElectronicsProducts = asyncHandler(async (req, res) => {
         new ApiResponse(200, product, "Product created successfully")
     )
 });
-export { createMensProducts, createWomensProducts, createElectronicsProducts }
+export { createMensProducts, createWomensProducts, createElectronicsProducts };
