@@ -26,6 +26,10 @@ const productSchema = new Schema({
     category: {
         type: String,
         required: true
+    },
+    mainCategory: {
+        type: String,
+        required: true
     }
 }, { timestamps: true })
 export const Mens = mongoose.model("Men", productSchema)
