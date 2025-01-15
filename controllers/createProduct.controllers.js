@@ -3,7 +3,7 @@ import { ApiError } from "../utiles/ApiError.js";
 import { ApiResponse } from "../utiles/ApiResponse.js";
 import { Electronics, Mens, Women } from "../models/product.model.js";
 import { uploadOnCloudinary } from "../utiles/Cloudinary.js";
-const createMensProducts = asyncHandler(async (req, res) => {
+const createMensProducts = asyncHandler(async (req, res) => {                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
     const { name, description, price, stock, category, mainCategory } = req.body;
     if ([name, price, stock, category, mainCategory].some(item => item?.trim() === "")) {
         return ApiError(res, 400, "All fields are required")

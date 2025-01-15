@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-
+// mongoose.set('debug', true);
 const connectDB = async () => {
     try {
         const connectionInstance = await mongoose.connect(process.env.DB_URI)

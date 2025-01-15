@@ -3,15 +3,15 @@ import { createElectronicsProducts, createMensProducts, createWomensProducts, up
 import { upload } from "../middlewares/multer.middlewares.js";
 
 const router = Router();
-router.route("/men").post(
+router.route("/mens").post(
     upload.array("imageUrl", 10),
     createMensProducts
 )
-router.route("/women").post(
+router.route("/womens").post(
     upload.array("imageUrl", 10),
     createWomensProducts
 )
-router.route("/electronic").post(
+router.route("/electronics").post(
     upload.array("imageUrl", 10),
     createElectronicsProducts
 );
