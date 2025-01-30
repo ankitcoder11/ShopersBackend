@@ -68,7 +68,6 @@ const getCart = asyncHandler(async (req, res) => {
     );
 });
 
-
 // Remove item from cart
 const removeFromCart = asyncHandler(async (req, res) => {
     const { userId, productId, productModel } = req.body;
@@ -128,6 +127,24 @@ const increaseQuantity = asyncHandler(async (req, res) => {
     );
 });
 
+//clear the cart
+const clearCart = asyncHandler(async (req, res) => {
+    const { userId } = req.body;
 
+    const cart = await Cart.findOne({ userId });
+    if (!cart) {
+        return ApiError(res, 404, "Cart not found");
+    }
 
-export { addToCart, getCart, removeFromCart, increaseQuantity };
+    // Clear all items from the cart
+    cart.items = [];
+
+    // Save the updated cart
+    await cart.save();
+
+    return res.status(200).json(
+        new ApiResponse(200, cart, "Cart cleared successfully")
+    );
+});
+
+export { addToCart, getCart, removeFromCart, increaseQuantity,clearCart };

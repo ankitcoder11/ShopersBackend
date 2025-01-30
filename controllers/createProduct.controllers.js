@@ -3,7 +3,8 @@ import { ApiError } from "../utiles/ApiError.js";
 import { ApiResponse } from "../utiles/ApiResponse.js";
 import { Electronics, Mens, Women } from "../models/product.model.js";
 import { uploadOnCloudinary } from "../utiles/Cloudinary.js";
-const createMensProducts = asyncHandler(async (req, res) => {                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
+
+const createMensProducts = asyncHandler(async (req, res) => {
     const { name, description, price, stock, category, mainCategory } = req.body;
     if ([name, price, stock, category, mainCategory].some(item => item?.trim() === "")) {
         return ApiError(res, 400, "All fields are required")
@@ -30,6 +31,7 @@ const createMensProducts = asyncHandler(async (req, res) => {
         new ApiResponse(200, product, "Product created successfully")
     )
 });
+
 const createWomensProducts = asyncHandler(async (req, res) => {
     const { name, description, price, stock, category, mainCategory } = req.body;
     if ([name, price, stock, category, mainCategory].some(item => item?.trim() === "")) {
@@ -39,7 +41,6 @@ const createWomensProducts = asyncHandler(async (req, res) => {
     for (const file of req.files) {
         const imageLocalPath = file.path;
         const imageUrl = await uploadOnCloudinary(imageLocalPath);
-        console.log(imageUrl);
         imageUrls.push(imageUrl.url);
     }
     const product = await Women.create({
@@ -58,6 +59,7 @@ const createWomensProducts = asyncHandler(async (req, res) => {
         new ApiResponse(200, product, "Product created successfully")
     )
 });
+
 const createElectronicsProducts = asyncHandler(async (req, res) => {
     const { name, description, price, stock, category, mainCategory } = req.body;
     if ([name, price, stock, category, mainCategory].some(item => item?.trim() === "")) {
@@ -93,6 +95,7 @@ const createElectronicsProducts = asyncHandler(async (req, res) => {
         new ApiResponse(200, product, "Product created successfully")
     )
 });
+
 const updateProduct = asyncHandler(async (req, res) => {
     const { id, name, description, price, stock, category, mainCategory } = req.body;
     if (!id) {

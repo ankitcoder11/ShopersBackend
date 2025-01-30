@@ -25,9 +25,7 @@ const registerUser = asyncHandler(async (req, res) => {
         $or: [{ mobileNumber }, { email }]
     })
     if (existedUser) {
-        // throw new ApiError(409, "User with email or mobile number already exists")
         return ApiError(res, 409, "User with email or mobile number already exists")
-        // res.send("User with email or mobile number already exists");
     }
     const user = await User.create({
         fullName,
