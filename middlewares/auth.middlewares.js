@@ -20,3 +20,10 @@ export const verifyJWT = asyncHandler(async (req, res, next) => {
         return ApiError(res, 401, error?.message || "Invalid access token")
     }
 })
+
+export const verifyAdmin = (req, res, next) => {
+    if (req.user?.email !== "ankit@gmail.com") {
+        return ApiError(res, 403, "Forbidden: Admin access required");
+    }
+    next();
+}

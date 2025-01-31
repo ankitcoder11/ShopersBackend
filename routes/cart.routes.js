@@ -1,12 +1,13 @@
 import { Router } from "express";
 import { addToCart, clearCart, getCart, increaseQuantity, removeFromCart } from "../controllers/cart.controllers.js";
+import { verifyJWT } from './../middlewares/auth.middlewares.js';
 
 const router = Router();
 
-router.route("/add").post(addToCart);
-router.route("/:userId").get(getCart);
-router.route("/updatequantity").post(increaseQuantity);
-router.route("/remove").delete(removeFromCart);
-router.route("/clearcart").delete(clearCart);
+router.route("/add").post(verifyJWT, addToCart);
+router.route("/:userId").get(verifyJWT, getCart);
+router.route("/updatequantity").post(verifyJWT, increaseQuantity);
+router.route("/remove").delete(verifyJWT, removeFromCart);
+router.route("/clearcart").delete(verifyJWT, clearCart);
 
 export default router;
